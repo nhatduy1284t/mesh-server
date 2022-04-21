@@ -7,6 +7,7 @@ const helper = require('./helpers/Functions');
 const app = express();
 const mongoose = require('./db/index');
 const User = require('./db/Model/User');
+
 mongoose.connects();
 const userRoutes = require('./routes/userRoutes');
 const adminRoutes = require('./routes/adminRoutes');
@@ -41,6 +42,6 @@ app.use(express.json());
 app.use('/user', userRoutes);
 app.use('/admin',adminRoutes);
 
-app.listen(port, () => {
+app.listen(port,"192.168.174.128", () => {
   console.log(`Example app listening on port http://localhost:${port}/`);
 });
