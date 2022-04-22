@@ -5,8 +5,8 @@ const totalCPUs = require('os').cpus().length;
 const path = require('path');
 const helper = require('./helpers/Functions');
 const app = express();
-const mongoose = require('./db/index');
 const User = require('./db/Model/User');
+const mongoose = require('./db/index');
 
 mongoose.connects();
 const userRoutes = require('./routes/userRoutes');
@@ -36,12 +36,20 @@ const adminRoutes = require('./routes/adminRoutes');
 //   });
 // }
 
-
 app.use(express.json());
 //UserRoutes
 app.use('/user', userRoutes);
-app.use('/admin',adminRoutes);
+app.use('/admin', adminRoutes);
 
-app.listen(port,"192.168.174.128", () => {
+app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}/`);
 });
+
+
+// User.findOneAndUpdate({username: "Naomizz"}, {username:"Naomizz"}, {new: true}, (err, doc) => {
+//   if (err) {
+//       console.log("Something wrong when updating data!");
+//   }
+
+//   console.log(doc);
+// });

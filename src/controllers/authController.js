@@ -3,8 +3,8 @@ var jwt = require('jsonwebtoken');
 const User = require('../db/Model/User');
 const { PRIVATE_USER_KEY, PRIVATE_ADMIN_KEY } = require('../utils/Settings');
 
-let generateToken = (dataGenerate, privateKey,time) => {
-  let expiredTime = time+'s';
+let generateToken = (dataGenerate, privateKey, time) => {
+  let expiredTime = time + 's';
   var token = jwt.sign(
     {
       data: dataGenerate,
@@ -58,7 +58,7 @@ exports.checkAccount = async (user) => {
 
 exports.register = async (req, res, next) => {
   let { username, password } = req.body;
-  let userRegister = new User({ username, password });
+  let userRegister = new User({ username, password,role:"user" });
   try {
     let user = await User.findOne({ username: userRegister.username });
 
@@ -74,6 +74,8 @@ exports.register = async (req, res, next) => {
   }
 };
 
+
+
 exports.login = async (req, res, next) => {
   try {
     let { username, password } = req.body;
@@ -85,11 +87,10 @@ exports.login = async (req, res, next) => {
     }
     console.log(userDatabase);
     if (bcrypt.compareSync(user.password, userDatabase.password)) {
-      
       if (userDatabase._doc.role === 'admin') {
-        return res.status(200).send({ token: generateToken(user.username, PRIVATE_ADMIN_KEY,500) });
+        return res.status(200).send({ token: generateToken(user.username, PRIVATE_ADMIN_KEY, 500) });
       }
-      return res.status(200).send({ token: generateToken(user.username, PRIVATE_USER_KEY,20) });
+      return res.status(200).send({ token: generateToken(user.username, PRIVATE_USER_KEY, 20) });
     }
 
     throw new Error('Password is not correct');
@@ -108,4 +109,4 @@ exports.getProfile = async (req, res, next) => {
     res.send(error);
   }
 };
-// module.exports = { checkAccount, createAccount, verifyToken };
+

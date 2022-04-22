@@ -4,6 +4,7 @@ const userSchema = new mongoose.Schema(
   {
     username: { type: String },
     password: { type: String },
+    role: { type: String },
   },
   { collection: 'User' }
 );
