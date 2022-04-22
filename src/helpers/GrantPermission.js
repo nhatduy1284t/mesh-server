@@ -23,4 +23,4 @@ function init() {
   grantPermission(args[0]);
 }
 
-init();
+init()
