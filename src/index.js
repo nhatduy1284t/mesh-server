@@ -41,15 +41,8 @@ app.use(express.json());
 app.use('/user', userRoutes);
 app.use('/admin', adminRoutes);
 
-app.listen(port,"192.168.174.128", () => {
+const VIRTUAL_IP = "192.168.174.128"
+app.listen(port,VIRTUAL_IP, () => {
   console.log(`Example app listening on port http://localhost:${port}/`);
 });
 
-
-// User.findOneAndUpdate({username: "Naomizz"}, {username:"Naomizz"}, {new: true}, (err, doc) => {
-//   if (err) {
-//       console.log("Something wrong when updating data!");
-//   }
-
-//   console.log(doc);
-// });

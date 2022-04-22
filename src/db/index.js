@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-mongoose.connects = async function() {
-    try {
-      await mongoose.connect('mongodb://localhost:27017/mesh');
-      console.log('Connect successfully!');
-    } catch (error) {
-      console.log('Connect fail!');
-    }
+mongoose.connects = async function () {
+  try {
+    await mongoose.connect('mongodb://localhost:27017/mesh', { useNewUrlParser: true, useUnifiedTopology: true });
+    console.log('Connect successfully!');
+  } catch (error) {
+    console.log('Connect fail!');
+  }
 };
 
 module.exports = mongoose;
@@ -18,9 +18,8 @@ module.exports = mongoose;
 //     { collection: 'User' }
 //   );
 //   var User = mongoose.model('User', userSchema);
-  
+
 //   let userToBeStored = new User({
 //     firstName: 'Jamie',
 //     lastName: 'Munro',
 //   });
-  
