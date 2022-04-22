@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
-
+const express = require("express")
 mongoose.connects = async function () {
   try {
+    const app= express();
+    app.use(express.json())
     await mongoose.connect('mongodb://localhost:27017/mesh', { useNewUrlParser: true, useUnifiedTopology: true });
     console.log('Connect successfully!');
   } catch (error) {
@@ -10,16 +12,3 @@ mongoose.connects = async function () {
 };
 
 module.exports = mongoose;
-//   const userSchema = new mongoose.Schema(
-//     {
-//       firstName: String,
-//       lastName: String,
-//     },
-//     { collection: 'User' }
-//   );
-//   var User = mongoose.model('User', userSchema);
-
-//   let userToBeStored = new User({
-//     firstName: 'Jamie',
-//     lastName: 'Munro',
-//   });
