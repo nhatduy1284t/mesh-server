@@ -41,7 +41,7 @@ app.use(express.json());
 app.use('/user', userRoutes);
 app.use('/admin', adminRoutes);
 
-app.listen(port, () => {
+app.listen(port,"192.168.174.128", () => {
   console.log(`Example app listening on port http://localhost:${port}/`);
 });
 
